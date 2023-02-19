@@ -43,7 +43,7 @@ jobs:
         run: >
           chmod 777 ./build-ui.sh
           && git clone https://github.com/tloncorp/bouncer.git
-          && apt update
+          && sudo apt-get update
           && apt-get install ruby-full -y
           && gem install bundler
           && cd ./bouncer
