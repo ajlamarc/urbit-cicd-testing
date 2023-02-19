@@ -45,7 +45,7 @@ jobs:
           && git clone https://github.com/tloncorp/bouncer.git
           && sudo apt-get update
           && sudo apt-get install ruby-full -y
-          && gem install bundler
+          && sudo gem install bundler
           && cd ./bouncer
           && bundle
           && bin/bounce -c ../bounce-config.yml
