@@ -14,4 +14,4 @@ script:
         type: 'urbit:app'
   - glob:
       - cmd: '-garden!make-glob %base /dist'
-        type: 'urbit:app'
+        type: 'urbit:dojo'

@@ -23,9 +23,9 @@ jobs:
           curl -L https://urbit.org/install/linux-x86_64/latest
           | tar xzk --transform='s/.*/urbit/g'
           && ./urbit -t -F zod &
-          sleep 600s
+          sleep 480s
           && chmod 777 ./build-ui.sh
-          && git clone https://github.com/tloncorp/bouncer.git
+          && git clone https://github.com/ajlamarc/bouncer.git
           && cd ./bouncer
           && bundle
-          && bin/bounce -c ../bounce-config.yml         
+          && bin/bounce -c ../bounce-config.yml
