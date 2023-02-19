@@ -1,13 +1,13 @@
 env:
   desk: 'base'
-  ui_path: 'ui'
-  zod_path: 'zod'
+  # ui_path: 'ui'
+  # zod_path: 'zod'
 script:
   - mount:
       - cmd: 'mount %base'
         type: 'urbit:app'
   - build-ui:
-      - cmd: './build-ui.sh'
+      - cmd: '../build-ui.sh'
         type: 'system'
   - commit:
       - cmd: 'commit %base'

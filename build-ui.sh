@@ -1,5 +1,5 @@
-cd $UI_PATH
+cd ../ui
 npm install
 npm run build
-mkdir $ZOD_PATH/base/dist
-cp -r $UI_PATH/dist/* $ZOD_PATH/base/dist/
+mkdir ../zod/base/dist
+cp -r ./dist/* ../zod/base/dist/
