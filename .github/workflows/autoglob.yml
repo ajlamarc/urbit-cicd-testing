@@ -20,7 +20,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install binary and start fakezod
         run: >
-          ls -a
           curl -L https://urbit.org/install/linux-x86_64/latest | tar xzk --transform='s/.*/urbit/g'
           ./urbit -t -F zod
 
