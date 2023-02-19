@@ -8,24 +8,24 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  boot-fakezod:
-    runs-on: ubuntu-latest
+  # jobs:
+  #   boot-fakezod:
+  #     runs-on: ubuntu-latest
 
-    steps:
-      - name: Install binary and start fakezod
-        run: >
-          curl -L https://urbit.org/install/linux-x86_64/latest
-          | tar xzk --transform='s/.*/urbit/g'
-          && ./urbit -t -F zod
+  #     steps:
+  #       - name: Install binary and start fakezod
+  #         run: >
+  #           curl -L https://urbit.org/install/linux-x86_64/latest
+  #           | tar xzk --transform='s/.*/urbit/g'
+  #           && ./urbit -t -F zod
 
-  wait-for-live:
-    runs-on: ubuntu-latest
+  #   wait-for-live:
+  #     runs-on: ubuntu-latest
 
-    steps:
-      - name: Wait for fakezod
-        run: sleep 420s
-        shell: bash
+  #     steps:
+  #       - name: Wait for fakezod
+  #         run: sleep 420s
+  #         shell: bash
   #  - uses: emilioschepis/wait-for-endpoint@v1.0.3
   #    with:
   #      url: http://localhost:8080
@@ -36,7 +36,7 @@ jobs:
 
   prep-bouncer:
     runs-on: ubuntu-latest
-    needs: [wait-for-live]
+    # needs: [wait-for-live]
     steps:
       - uses: actions/checkout@v3
       - name: bounce
@@ -44,7 +44,7 @@ jobs:
           chmod 777 ./build-ui.sh
           && git clone https://github.com/tloncorp/bouncer.git
           && sudo apt-get update
-          && apt-get install ruby-full -y
+          && sudo apt-get install ruby-full -y
           && gem install bundler
           && cd ./bouncer
           && bundle
