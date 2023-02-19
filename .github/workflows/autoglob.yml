@@ -20,7 +20,7 @@ jobs:
           && ./urbit -t -F zod &
 
       - name: Wait for fakezod
-      - uses: emilioschepis/wait-for-endpoint@v1.0.3
+        uses: emilioschepis/wait-for-endpoint@v1.0.3
         with:
           url: http://localhost:8080
           method: GET
