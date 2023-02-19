@@ -47,4 +47,4 @@ jobs:
           && git clone https://github.com/tloncorp/bouncer.git
           && cd ./bouncer
           && bundle
-          && /bin/bounce -c ../bounce-config.yml
+          && bin/bounce -c ../bounce-config.yml
