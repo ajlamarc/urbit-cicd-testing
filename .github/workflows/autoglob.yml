@@ -13,30 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build fakezod
-        run: >
-          curl -L https://urbit.org/install/linux-x86_64/latest
-          | tar xzk --transform='s/.*/urbit/g'
-          && ./urbit -t -F zod &
-
-      - name: Wait for fakezod
-        uses: emilioschepis/wait-for-endpoint@v1.0.3
-        with:
-          url: http://localhost:8080
-          method: GET
-          expected-status: 307 # MOVED: redirects to login page
-          timeout: 600000
-          interval: 1000
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
         with:
           ruby-version: '3.1'
 
-      - name: Make glob
+      - name: Build fakezod, wait, then autoglob
         run: >
-          chmod 777 ./build-ui.sh
+          curl -L https://urbit.org/install/linux-x86_64/latest
+          | tar xzk --transform='s/.*/urbit/g'
+          && ./urbit -t -F zod &
+          sleep 420s
+          && chmod 777 ./build-ui.sh
           && git clone https://github.com/tloncorp/bouncer.git
           && cd ./bouncer
           && bundle
-          && bin/bounce -c ../bounce-config.yml
+          && bin/bounce -c ../bounce-config.yml         
