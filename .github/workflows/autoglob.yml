@@ -9,30 +9,30 @@ on:
   workflow_dispatch:
 
 jobs:
-    #   boot-fakezod:
-    #     runs-on: ubuntu-latest
+  #   boot-fakezod:
+  #     runs-on: ubuntu-latest
 
-    #     steps:
-    #       - name: Install binary and start fakezod
-    #         run: >
-    #           curl -L https://urbit.org/install/linux-x86_64/latest
-    #           | tar xzk --transform='s/.*/urbit/g'
-    #           && ./urbit -t -F zod
+  #     steps:
+  #       - name: Install binary and start fakezod
+  #         run: >
+  #           curl -L https://urbit.org/install/linux-x86_64/latest
+  #           | tar xzk --transform='s/.*/urbit/g'
+  #           && ./urbit -t -F zod
 
-    #   wait-for-live:
-    #     runs-on: ubuntu-latest
+  #   wait-for-live:
+  #     runs-on: ubuntu-latest
 
-    #     steps:
-    #       - name: Wait for fakezod
-    #         run: sleep 420s
-    #         shell: bash
-    #  - uses: emilioschepis/wait-for-endpoint@v1.0.3
-    #    with:
-    #      url: http://localhost:8080
-    #      method: GET
-    #      expected-status: 307  # MOVED: redirects to login page
-    #      timeout: 600000
-    #      interval: 1000
+  #     steps:
+  #       - name: Wait for fakezod
+  #         run: sleep 420s
+  #         shell: bash
+  #  - uses: emilioschepis/wait-for-endpoint@v1.0.3
+  #    with:
+  #      url: http://localhost:8080
+  #      method: GET
+  #      expected-status: 307  # MOVED: redirects to login page
+  #      timeout: 600000
+  #      interval: 1000
 
   prep-bouncer:
     runs-on: ubuntu-latest
@@ -49,5 +49,7 @@ jobs:
           && git clone https://github.com/tloncorp/bouncer.git
           && cd ./bouncer
           && bundle
-          && ../build-ui.sh
+          && cd ..
+          && ./build-ui.sh
+
 #         && bin/bounce -c ../bounce-config.yml
