@@ -1,0 +1,52 @@
+name: Auto-globber
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  boot-fakezod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install binary and start fakezod
+        run: >
+          curl -L https://urbit.org/install/linux-x86_64/latest
+          tar xzk --transform='s/.*/urbit/g'
+          ./urbit -t -F zod
+  
+  wait-for-live:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: emilioschepis/wait-for-endpoint@v1.0.3
+        with:
+          url: http://localhost:8080
+          method: GET
+          expected-status: 307  # MOVED: redirects to login page
+          timeout: 600000
+          interval: 1000
+          
+  prep-bouncer:
+    runs-on: ubuntu-latest
+    needs: [wait-for-live]
+    steps:
+      - uses: actions/checkout@v3
+      - name: bounce
+        run: >
+          git clone https://github.com/tloncorp/bouncer.git
+          apt-get install ruby-full
+          ruby -v
+          gem install bundler
+          cd ./bouncer
+          bundle
+          bin/bounce
