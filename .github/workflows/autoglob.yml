@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
       - name: Install binary and start fakezod
         run: >
           curl -L https://urbit.org/install/linux-x86_64/latest
@@ -27,7 +26,6 @@ jobs:
   wait-for-live:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - uses: emilioschepis/wait-for-endpoint@v1.0.3
         with:
           url: http://localhost:8080
